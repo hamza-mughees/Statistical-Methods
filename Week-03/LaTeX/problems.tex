@@ -1,0 +1,123 @@
+%Example of use of oxmathproblems latex class for problem sheets
+\documentclass{oxmathproblems}
+
+%(un)comment this line to enable/disable output of any solutions in the file
+%\printanswers
+
+%define the page header/title info
+\trinityterm{STU33009}
+\course{Statistical Methods for Computer Science}
+\assignmentnumber{3}
+
+% add further contact details to footer if desired,
+%e.g. email address, or name and email address
+\contact{Hamza Mughees, 17329860}
+
+
+\begin{document}
+
+\begin{questions}
+
+\miquestion
+\begin{parts}
+    \part The total number of outcomes that can occur when rolling a die 6 times is $6^6=46656$. the sequence 1,1,2,2,3,3 is one out of these outcomes:
+    $$\frac{1}{46656}=0.00002143347051$$
+    \part The remaining 2 dice will have an outcome of 1 out of 5 possibilities each, for a total of $5^2=25$ possibilities.
+    These 2 dice can be any of the 6 total dice:
+    $${6\choose2}=15$$
+    We can now multiply both of these quantities for the total possibilities:
+    $$15\cdot25=375$$
+    To get the probability, we simply divide this quantity by the total number of outcomes:
+    $$\frac{375}{46656}=0.00803755144$$
+    \part The remaining 5 dice will have an outcome of 1 out of 5 possibilities each, for a total of $5^5=3125$ possibilities.
+    A 1 can be rolled in any of the 6 throws:
+    $${6\choose1}=6$$
+    We can now multiply both of these quantities for the total possibilities:
+    $$6\cdot3125=18750$$
+    To get the probability, we simply divide this quantity by the total number of outcomes:
+    $$\frac{18750}{46656}=0.401877572$$
+    \part We can first calculate the probability of rolling no 1's. For each roll, the probability of not rolling a 1 would be $\frac{5}{6}$:
+    $$P(E^c)=\frac{5}{6}\cdot\frac{5}{6}\cdot\frac{5}{6}\cdot\frac{5}{6}\cdot\frac{5}{6}\cdot\frac{5}{6}=\left(\frac{5}{6}\right)^6=0.3348979767$$
+    Now we can subtract this quantity from 1 to get the probability of rolling at least one 1:
+    $$P(E)=1-P(E^c)=1-0.3348979767=0.6651020233$$
+\end{parts}
+
+\miquestion
+Two events $A$ and $B$ are independent if and only if $P(A\cap B)=P(A)\cdot P(B)$. 
+\newline
+For the given events,
+$$P(A)=\frac{1}{6}$$
+$$P(B|A)=\frac{1}{20}$$
+and, 
+$$P(B)=\frac{1}{6}\cdot\frac{1}{20}=\frac{1}{120}$$
+We can infer the following:
+$$P(A\cap B)=P(A)\cdot P(B)\Longleftrightarrow P(B)=\frac{P(A\cap B)}{P(A)}=P(B|A)$$
+$$P(B)=P(B|A)$$
+$$\frac{1}{20}=\frac{1}{120}$$
+This is not true, therefore events $A$ and $b$ are not independent.
+%force a page break for better layout of questions 
+%NOTE: only force pagebreaks at the final stage for perfecting the layout
+%\newpage
+
+\miquestion
+\begin{parts}
+    \part Let $C$ be the event that her selected password is correct.
+    \newline
+    Let $I$ be the event that her selected password is incorrect.
+    \newline
+    Let $C_k$ be the event that her $k$-th selection is the correct password.
+    \newline
+    \newline
+    In order for her to select the correct password on the $k$-th selection, she must first select incorrectly in the $k-1$ prior selections. The probability of this would be:
+    $$P(C_k)=P_1(I)\cdot P_2(I)\cdot P_3(I)\cdot...\cdot P_{k-1}(I)\cdot P_k(C)$$
+    this can be expanded to as follows:
+    $$P(C_k)=\frac{n-1}{n}\cdot\frac{n-2}{n-1}\cdot\frac{n-3}{n-2}\cdot...\cdot\frac{n-(k-1)}{n-(k-2)}\cdot\frac{1}{n-(k-1)}$$
+    In the above expression, it can be noticed that the denominator of each operand is the same as the numerator of the previous operand. Therefore, everything will cancel except the denominator of the first operand and the numerator of the last. Hence, the above expression would simplify to the following:
+    $$P(C_k)=\frac{1}{n}$$
+    \part $P(C_3)=\ddfrac{1}{6}=0.1666666667$
+    \newpage
+    \part Our new expression for $P(C_k)$ would be the following:
+    $$P(C_k)=P(I)^{k-1}\cdot P(C)$$
+    From this we get,
+    $$P(C_k)=\left(\frac{n-1}{n}\right)^{k-1}\cdot\frac{1}{n}$$
+    \part 
+    $P(C_3)=\left(\ddfrac{6-1}{3}\right)^{3-1}\cdot\ddfrac{1}{6}=\left(\ddfrac{5}{6}\right)^{2}\cdot\ddfrac{1}{6}=0.1157407407$
+\end{parts}
+
+\miquestion
+\begin{parts}
+    \part In order to get flagged, the robot must fail in at least one of the three CAPTCHAs. We can first calculate the probability that the robot doesn't get flagged:
+    $$0.3\cdot0.3\cdot0.3=0.3^3=0.027$$
+    We can now subtract this quantity from 1 to obtain the probability that the robot gets flagged:
+    $$1-0.027=0.973$$
+    \part The same logic can be applied here:
+    $$1-0.95\cdot0.95\cdot0.95=1-0.95^3=0.142625$$
+    \part Let $H$ be the event that the user is human.
+    \newline
+    Let $R$ be the event that the user is a robot.
+    \newline
+    Let $F$ be the event that the user has been flagged.
+    \newline
+    \newline
+    We know the the following,
+    $$P(R)=0.1\text{, }P(H)=0.9\text{, }P(F|R)=0.973\text{, }P(F|H)=0.142625$$
+    We want to calculate $P(R|F)$. Bayes' Rule tells us the following,
+    $$P(R|F)=\frac{P(F|R)\cdot P(R)}{P(F)}$$
+    However, we cannot solve for $P(R|F)$ since we do not have $P(F)$. To get around this, we can use Bayes' Rule to define the following equation,
+    $$P(H|F)=\frac{P(F|H)\cdot P(H)}{P(F)}$$
+    \newpage
+    We now have an equation for $P(R|F)$ and an equation for $P(H|F)$. These probabilities have the following relationship,
+    $$P(R|F)=1-P(H|F)$$
+    We can no simply substitute for both of these probabilities and calculate $P(F)$,
+    $$\frac{P(F|R)\cdot P(R)}{P(F)}=1-\frac{P(F|H)\cdot P(H)}{P(F)}$$
+    $$\frac{0.973\cdot 0.1}{P(F)}=1-\frac{0.142625\cdot 0.9}{P(F)}$$
+    Multiplying both sides by $P(F)$, we get,
+    $$0.0973=P(F)-0.1283625$$
+    $$P(F)=0.2256625$$
+    We can now substitute this value back into our first Bayes' rule equation and solve for $P(R|F)$,
+    $$P(R|F)=\frac{0.973\cdot 0.1}{0.2256625}=0.431174874$$
+\end{parts}
+
+\end{questions}
+
+\end{document}
